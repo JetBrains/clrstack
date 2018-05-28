@@ -1,0 +1,19 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClrStack", "ClrStack\ClrStack.csproj", "{2ECDA63E-31B6-4562-B88D-FDC51DCA1959}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2ECDA63E-31B6-4562-B88D-FDC51DCA1959}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2ECDA63E-31B6-4562-B88D-FDC51DCA1959}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2ECDA63E-31B6-4562-B88D-FDC51DCA1959}.Release|x64.ActiveCfg = Release|x64
+		{2ECDA63E-31B6-4562-B88D-FDC51DCA1959}.Release|x64.Build.0 = Release|x64
+		{2ECDA63E-31B6-4562-B88D-FDC51DCA1959}.Release|x86.ActiveCfg = Release|x86
+		{2ECDA63E-31B6-4562-B88D-FDC51DCA1959}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+EndGlobal
