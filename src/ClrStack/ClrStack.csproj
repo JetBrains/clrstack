@@ -1,30 +1,34 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <OutputType>Library</OutputType>
+        <OutputType>Exe</OutputType>
         <TargetFramework>net461</TargetFramework>
-        <Version>1.1.0</Version>
+        <Version>1.2.0</Version>
         <Title>ClrStack</Title>
         <Authors>Mikhail Filippov</Authors>
-        <Description>Tool for capturing managed stack traces from .NET applications.</Description>        
+        <Description>Tool for capturing managed stack traces from .NET applications.</Description>
         <PackageLicenseUrl>https://github.com/mfilippov/clrstack/blob/master/LICENSE</PackageLicenseUrl>
         <PackageProjectUrl>https://github.com/mfilippov/clrstack</PackageProjectUrl>
         <RepositoryUrl>https://github.com/mfilippov/clrstack</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <Copyright>Mikhail Filippov</Copyright>
-        <OutputPath>..\build</OutputPath>
-        <IncludeBuildOutput>False</IncludeBuildOutput>
+        <OutputPath>..\..\build</OutputPath>
     </PropertyGroup>
-    <ItemGroup>
-        <None Include="..\build\net461\ClrStack.x64.exe" Pack="True" PackagePath="."/>
-        <None Include="..\build\net461\ClrStack.x86.exe" Pack="True" PackagePath="."/>
-        <None Include="..\build\net461\Microsoft.Diagnostics.Runtime.dll" Pack="True" PackagePath="."/>        
+    <ItemGroup>        
+        <None Include="..\build\net461\ClrStack.x64.exe" Pack="True" PackagePath=".\lib\net461"/>
+        <None Include="..\build\net461\ClrStack.x86.exe" Pack="True" PackagePath=".\lib\net461"/>
+        <None Include="..\build\net461\Microsoft.Diagnostics.Runtime.dll" Pack="True" PackagePath=".\lib\net461"/>
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\ClrStack.x64\ClrStack.x64.csproj">
             <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </ProjectReference>
         <ProjectReference Include="..\ClrStack.x86\ClrStack.x86.csproj">
             <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </ProjectReference>
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Diagnostics.Runtime" Version="0.9.180305.1" />
     </ItemGroup>
 </Project>
