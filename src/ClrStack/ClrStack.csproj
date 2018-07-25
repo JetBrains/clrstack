@@ -14,9 +14,9 @@
         <OutputPath>..\..\build</OutputPath>
     </PropertyGroup>
     <ItemGroup>        
-        <None Include="..\build\net461\ClrStack.x64.exe" Pack="True" PackagePath=".\lib\net461"/>
-        <None Include="..\build\net461\ClrStack.x86.exe" Pack="True" PackagePath=".\lib\net461"/>
-        <None Include="..\build\net461\Microsoft.Diagnostics.Runtime.dll" Pack="True" PackagePath=".\lib\net461"/>
+        <None Include="..\..\build\net461\ClrStack.x64.exe" Pack="True" PackagePath=".\lib\net461"/>
+        <None Include="..\..\build\net461\ClrStack.x86.exe" Pack="True" PackagePath=".\lib\net461"/>
+        <None Include="..\..\build\net461\Microsoft.Diagnostics.Runtime.dll" Pack="True" PackagePath=".\lib\net461"/>
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\ClrStack.x64\ClrStack.x64.csproj">
