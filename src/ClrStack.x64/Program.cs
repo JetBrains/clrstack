@@ -77,7 +77,7 @@ namespace ClrStack
             }
             else
             {
-                var fileName = $"{DateTime.Now:yyyy-MM-dd_HH_mm_ss.fff}.tdump";
+                var fileName = $"{DateTime.Now:yyyy-MM-dd_HH-mm-ss.fff}.tdump";
                 File.WriteAllText(Path.Combine(threadDumpDir, fileName), output.ToString(), Encoding.UTF8);
             }
         }
