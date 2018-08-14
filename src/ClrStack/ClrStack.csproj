@@ -2,7 +2,7 @@
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <TargetFramework>net461</TargetFramework>
-        <Version>1.3.0</Version>
+        <Version>1.4.0</Version>
         <Title>ClrStack</Title>
         <Authors>Mikhail Filippov</Authors>
         <Description>Tool for capturing managed stack traces from .NET applications.</Description>
