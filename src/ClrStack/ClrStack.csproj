@@ -16,10 +16,10 @@
         <AssemblyOriginatorKeyFile>..\..\ClrStack.snk</AssemblyOriginatorKeyFile>
     </PropertyGroup>
     <ItemGroup>
-        <None Include="..\..\LICENSE" Pack="True" PackagePath=".\"/>
-        <None Include="..\..\build\net461\ClrStack.x64.exe" Pack="True" PackagePath=".\lib\net461"/>
-        <None Include="..\..\build\net461\ClrStack.x86.exe" Pack="True" PackagePath=".\lib\net461"/>
-        <None Include="..\..\build\net461\Microsoft.Diagnostics.Runtime.dll" Pack="True" PackagePath=".\lib\net461"/>
+        <None Include="..\..\LICENSE" Pack="True" PackagePath=".\" />
+        <None Include="..\..\build\net461\ClrStack.x64.exe" Pack="True" PackagePath=".\lib\net461" />
+        <None Include="..\..\build\net461\ClrStack.x86.exe" Pack="True" PackagePath=".\lib\net461" />
+        <None Include="..\..\build\net461\Microsoft.Diagnostics.Runtime.dll" Pack="True" PackagePath=".\lib\net461" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\ClrStack.x64\ClrStack.x64.csproj">
@@ -31,7 +31,10 @@
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </ProjectReference>
     </ItemGroup>
-    <ItemGroup>
+    <ItemGroup Condition="'$(JetBuild)' == 'true'">
+        <PackageReference Include="JetBrains.Microsoft.Diagnostics.Runtime" Version="1.0.20190111.2" />
+    </ItemGroup>
+    <ItemGroup Condition="'$(JetBuild)' != 'true'">
         <PackageReference Include="Microsoft.Diagnostics.Runtime" Version="0.9.180305.1" />
     </ItemGroup>
 </Project>

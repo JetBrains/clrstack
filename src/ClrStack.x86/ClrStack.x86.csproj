@@ -11,8 +11,11 @@
         <SignAssembly>true</SignAssembly>
         <AssemblyOriginatorKeyFile>..\..\ClrStack.snk</AssemblyOriginatorKeyFile>
     </PropertyGroup>
-    <ItemGroup>
-        <PackageReference Include="Microsoft.Diagnostics.Runtime" Version="0.9.180305.1"/>
+    <ItemGroup Condition="'$(JetBuild)' == 'true'">
+        <PackageReference Include="JetBrains.Microsoft.Diagnostics.Runtime" Version="1.0.20190111.2" />
+    </ItemGroup>
+    <ItemGroup Condition="'$(JetBuild)' != 'true'">
+        <PackageReference Include="Microsoft.Diagnostics.Runtime" Version="0.9.180305.1" />
     </ItemGroup>
     <ItemGroup>
         <Compile Include="..\ClrStack.x64\Program.cs">
