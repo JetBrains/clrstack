@@ -6,7 +6,7 @@
         <Title>ClrStack</Title>
         <Authors>Mikhail Filippov</Authors>
         <Description>Tool for capturing managed stack traces from .NET applications.</Description>
-        <PackageLicense>https://github.com/mfilippov/clrstack/blob/master/LICENSE</PackageLicense>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
         <PackageProjectUrl>https://github.com/mfilippov/clrstack</PackageProjectUrl>
         <RepositoryUrl>https://github.com/mfilippov/clrstack</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
@@ -15,7 +15,8 @@
         <SignAssembly>true</SignAssembly>
         <AssemblyOriginatorKeyFile>..\..\ClrStack.snk</AssemblyOriginatorKeyFile>
     </PropertyGroup>
-    <ItemGroup>        
+    <ItemGroup>
+        <None Include="..\..\LICENSE" Pack="True" PackagePath="$(PackageLicenseFile)"/>
         <None Include="..\..\build\net461\ClrStack.x64.exe" Pack="True" PackagePath=".\lib\net461"/>
         <None Include="..\..\build\net461\ClrStack.x86.exe" Pack="True" PackagePath=".\lib\net461"/>
         <None Include="..\..\build\net461\Microsoft.Diagnostics.Runtime.dll" Pack="True" PackagePath=".\lib\net461"/>
