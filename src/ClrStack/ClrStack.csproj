@@ -6,7 +6,7 @@
         <Title>ClrStack</Title>
         <Authors>Mikhail Filippov</Authors>
         <Description>Tool for capturing managed stack traces from .NET applications.</Description>
-        <PackageLicenseUrl>https://github.com/mfilippov/clrstack/blob/master/LICENSE</PackageLicenseUrl>
+        <PackageLicense>https://github.com/mfilippov/clrstack/blob/master/LICENSE</PackageLicense>
         <PackageProjectUrl>https://github.com/mfilippov/clrstack</PackageProjectUrl>
         <RepositoryUrl>https://github.com/mfilippov/clrstack</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
