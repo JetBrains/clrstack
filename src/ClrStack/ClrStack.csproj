@@ -16,7 +16,7 @@
         <AssemblyOriginatorKeyFile>..\..\ClrStack.snk</AssemblyOriginatorKeyFile>
     </PropertyGroup>
     <ItemGroup>
-        <None Include="..\..\LICENSE" Pack="True" PackagePath="$(PackageLicenseFile)"/>
+        <None Include="..\..\LICENSE" Pack="True" PackagePath=".\"/>
         <None Include="..\..\build\net461\ClrStack.x64.exe" Pack="True" PackagePath=".\lib\net461"/>
         <None Include="..\..\build\net461\ClrStack.x86.exe" Pack="True" PackagePath=".\lib\net461"/>
         <None Include="..\..\build\net461\Microsoft.Diagnostics.Runtime.dll" Pack="True" PackagePath=".\lib\net461"/>
