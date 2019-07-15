@@ -2,11 +2,11 @@
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <TargetFramework>net461</TargetFramework>
-        <Version>1.6.0</Version>
+        <Version>1.7.4</Version>
         <Title>ClrStack</Title>
         <Authors>Mikhail Filippov</Authors>
         <Description>Tool for capturing managed stack traces from .NET applications.</Description>
-        <PackageLicenseFile>LICENSE</PackageLicenseFile>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageProjectUrl>https://github.com/mfilippov/clrstack</PackageProjectUrl>
         <RepositoryUrl>https://github.com/mfilippov/clrstack</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
@@ -16,7 +16,6 @@
         <AssemblyOriginatorKeyFile>..\..\ClrStack.snk</AssemblyOriginatorKeyFile>
     </PropertyGroup>
     <ItemGroup>
-        <None Include="..\..\LICENSE" Pack="True" PackagePath=".\" />
         <None Include="..\..\build\net461\ClrStack.x64.exe" Pack="True" PackagePath=".\lib\net461" />
         <None Include="..\..\build\net461\ClrStack.x86.exe" Pack="True" PackagePath=".\lib\net461" />
     </ItemGroup>
@@ -31,9 +30,9 @@
         </ProjectReference>
     </ItemGroup>
     <ItemGroup Condition="'$(JetBuild)' == 'true'">
-        <PackageReference Include="JetBrains.Microsoft.Diagnostics.Runtime" Version="1.0.20190111.2" />
+        <PackageReference Include="JetBrains.Microsoft.Diagnostics.Runtime" Version="1.1.20190710.31" />
     </ItemGroup>
     <ItemGroup Condition="'$(JetBuild)' != 'true'">
-        <PackageReference Include="Microsoft.Diagnostics.Runtime" Version="0.9.180305.1" />
+        <PackageReference Include="Microsoft.Diagnostics.Runtime" Version="1.1.35902" />
     </ItemGroup>
 </Project>
