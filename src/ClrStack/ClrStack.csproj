@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <TargetFramework>net461</TargetFramework>
+        <TargetFrameworks>net461;netcoreapp3.1</TargetFrameworks>
         <Version>1.7.4</Version>
         <Title>ClrStack</Title>
         <Authors>Mikhail Filippov</Authors>
@@ -18,6 +18,8 @@
     <ItemGroup>
         <None Include="..\..\build\net461\ClrStack.x64.exe" Pack="True" PackagePath=".\lib\net461" />
         <None Include="..\..\build\net461\ClrStack.x86.exe" Pack="True" PackagePath=".\lib\net461" />
+        <None Include="..\..\build\netcoreapp3.1\ClrStack.x64.dll" Pack="True" PackagePath=".\lib\netcoreapp3.1" />
+        <None Include="..\..\build\netcoreapp3.1\ClrStack.x64.runtimeconfig.json" Pack="True" PackagePath=".\lib\netcoreapp3.1" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\ClrStack.x64\ClrStack.x64.csproj">
