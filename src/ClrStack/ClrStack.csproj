@@ -33,6 +33,6 @@
         <PackageReference Include="JetBrains.Microsoft.Diagnostics.Runtime" Version="1.1.20190710.31" />
     </ItemGroup>
     <ItemGroup Condition="'$(JetBuild)' != 'true'">
-        <PackageReference Include="Microsoft.Diagnostics.Runtime" Version="1.1.35902" />
+        <PackageReference Include="Microsoft.Diagnostics.Runtime" Version="2.0.145301" />
     </ItemGroup>
 </Project>
