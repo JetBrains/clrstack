@@ -2,7 +2,7 @@
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <TargetFramework>net461</TargetFramework>
-        <Version>1.7.4</Version>
+        <Version>1.7.5</Version>
         <Authors>Mikhail Filippov</Authors>
         <PlatformTarget>x86</PlatformTarget>
         <OutputPath>..\..\build</OutputPath>
