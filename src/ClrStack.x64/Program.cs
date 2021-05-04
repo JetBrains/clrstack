@@ -44,7 +44,7 @@ namespace ClrStack
             try
             {
                 EnsureDbgEngineIsLoaded();
-                using (var target = DataTarget.AttachToProcess(pid, false))
+                using (var target = DataTarget.AttachToProcess(pid, 5000, AttachFlag.NonInvasive))
                 {
                     var clrVersion = target.ClrVersions.FirstOrDefault();
                     if (clrVersion == null)
@@ -61,7 +61,7 @@ namespace ClrStack
                             continue;
                         output.AppendLine($"Thread #{clrThread.ManagedThreadId}:");
 
-                        foreach (var frame in clrThread.EnumerateStackTrace())
+                        foreach (var frame in clrThread.StackTrace)
                             output.AppendLine($"\tat {frame}");
                     }
                 }
