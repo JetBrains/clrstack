@@ -13,7 +13,7 @@
         <Copyright>Mikhail Filippov</Copyright>
         <OutputPath>..\..\build</OutputPath>
         <SignAssembly>true</SignAssembly>
-        <AssemblyOriginatorKeyFile>..\..\ClrStack.snk</AssemblyOriginatorKeyFile>
+        <AssemblyOriginatorKeyFile>..\ClrStack.snk</AssemblyOriginatorKeyFile>
     </PropertyGroup>
     <ItemGroup>
         <None Include="..\..\build\net461\ClrStack.x64.exe" Pack="True" PackagePath=".\lib\net461" />

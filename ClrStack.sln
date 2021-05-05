@@ -1,10 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClrStack.x64", "ClrStack.x64\ClrStack.x64.csproj", "{4C4DD06E-14DF-4B70-B28B-3D4A4EB0DAC0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClrStack.x64", "src\ClrStack.x64\ClrStack.x64.csproj", "{4C4DD06E-14DF-4B70-B28B-3D4A4EB0DAC0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClrStack.x86", "ClrStack.x86\ClrStack.x86.csproj", "{DEBBF0D6-F59A-45BC-AC4F-5FC7CE976C71}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClrStack.x86", "src\ClrStack.x86\ClrStack.x86.csproj", "{DEBBF0D6-F59A-45BC-AC4F-5FC7CE976C71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClrStack", "ClrStack\ClrStack.csproj", "{A5A25E3F-D2AE-4130-91D4-56A8D0AA8201}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClrStack", "src\ClrStack\ClrStack.csproj", "{A5A25E3F-D2AE-4130-91D4-56A8D0AA8201}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
