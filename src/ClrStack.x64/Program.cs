@@ -6,16 +6,53 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using Microsoft.Diagnostics.Runtime;
+using System;
+using System.Diagnostics;
+using System.Globalization;
+using System.IO;
+using System.Reflection;
+using System.Runtime.InteropServices;
 
 namespace ClrStack
 {
     internal static class Program
     {
+        [DllImport("kernel32.dll", SetLastError = true)]
+        private static extern bool IsWow64Process(IntPtr hProcess, out bool isWow64Process);
+
         [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
         private static extern IntPtr LoadLibraryEx(string lpFileName, IntPtr hReservedNull, int dwFlags);
         private const int LoadLibrarySearchDllLoadDir = 0x00000100;
 
         private const string ThreadDumpDirEnvVar = "THREAD_DUMP_DIR";
+
+        private static int RerunMainAs32BitProcess(string[] args)
+        {
+            var platformSpecificExecutable = $"ClrStack32.exe";
+            var assemblyDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            var fullPath = assemblyDirectory != null
+                ? Path.Combine(assemblyDirectory, platformSpecificExecutable)
+                : platformSpecificExecutable;
+            var process = new Process
+            {
+                StartInfo = new ProcessStartInfo(fullPath, args[0])
+                {
+                    CreateNoWindow = true,
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                    UseShellExecute = false
+                }
+            };
+            process.OutputDataReceived += (sender, eventArgs) => Console.WriteLine(eventArgs.Data);
+            process.ErrorDataReceived += (sender, eventArgs) => Console.WriteLine(eventArgs.Data);
+            process.Start();
+            process.BeginOutputReadLine();
+            process.BeginErrorReadLine();
+            process.WaitForExit();
+            process.CancelOutputRead();
+            process.CancelErrorRead();
+            return process.ExitCode;
+        }
 
         private static void EnsureDbgEngineIsLoaded()
         {
@@ -33,6 +70,17 @@ namespace ClrStack
                 Console.Error.WriteLine("Usage: ClrStack.exe [PID]");
                 return;
             }
+
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) && Environment.Is64BitOperatingSystem && Environment.Is64BitProcess)
+            {
+                var targetProcess = Process.GetProcessById(pid);
+                if (IsWow64Process(targetProcess.Handle, out var targetProcessIsWow64) && targetProcessIsWow64)
+                {
+                    RerunMainAs32BitProcess(args);
+                    return;
+                }
+            }
+
             var threadDumpDir = Environment.GetEnvironmentVariable(ThreadDumpDirEnvVar);
             if (!string.IsNullOrEmpty(threadDumpDir) && !Directory.Exists(threadDumpDir))
             {
