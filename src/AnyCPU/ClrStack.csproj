@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <Import Project="..\ClrStack.Common.props" />
+
+    <PropertyGroup>
+        <PlatformTarget>AnyCPU</PlatformTarget>
+    </PropertyGroup>
+
+    <Import Project="..\Pack\ClrStack.Pack.props" />
+
+</Project>

@@ -1,25 +1,27 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project>
+
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <TargetFrameworks>net461;netcoreapp3.1</TargetFrameworks>
-        <Version>1.7.4</Version>
-        <Authors>Mikhail Filippov</Authors>
-        <PlatformTarget>x86</PlatformTarget>
-        <OutputPath>..\..\build</OutputPath>
+        <OutputPath>$(MSBuildThisFileDirectory)..\build</OutputPath>
         <RootNamespace>ClrStack</RootNamespace>
-        <IsPackable>false</IsPackable>
         <SignAssembly>true</SignAssembly>
-        <AssemblyOriginatorKeyFile>..\ClrStack.snk</AssemblyOriginatorKeyFile>
+        <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)ClrStack.snk</AssemblyOriginatorKeyFile>
+        <IsPackable>false</IsPackable>
+        <UseAppHost>false</UseAppHost>
+        <RollForward>Major</RollForward>
     </PropertyGroup>
+
     <ItemGroup Condition="'$(JetBuild)' == 'true'">
         <PackageReference Include="JetBrains.Microsoft.Diagnostics.Runtime" Version="2.0.20201014.8" />
     </ItemGroup>
+
     <ItemGroup Condition="'$(JetBuild)' != 'true'">
         <PackageReference Include="Microsoft.Diagnostics.Runtime" Version="2.0.145301" />
     </ItemGroup>
+
     <ItemGroup>
-        <Compile Include="..\ClrStack.x64\Program.cs">
-            <Link>Program.cs</Link>
-        </Compile>
+        <Compile Include="$(MSBuildThisFileDirectory)Program.cs" />
     </ItemGroup>
+
 </Project>

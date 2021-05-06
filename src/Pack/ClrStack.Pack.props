@@ -1,0 +1,25 @@
+﻿<Project>
+
+    <PropertyGroup>
+        <IsPackable>true</IsPackable>
+        <PackageId>ClrStack</PackageId>
+        <Version>1.7.4</Version>
+        <Title>ClrStack</Title>
+        <Authors>Mikhail Filippov, Ilia Kirianovskii</Authors>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageProjectUrl>https://github.com/JetBrains/clrstack</PackageProjectUrl>
+        <Description>Tool for capturing managed stack traces from .NET applications.</Description>
+        <Copyright>JetBrains s.r.o.</Copyright>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="$(MSBuildThisFileDirectory)..\x86\ClrStack32.csproj">
+            <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+        </ProjectReference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="$(MSBuildThisFileDirectory)..\..\build\net461\ClrStack32.exe" Pack="True" PackagePath=".\lib\net461" Visible="False" />
+    </ItemGroup>
+
+</Project>
