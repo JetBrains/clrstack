@@ -19,7 +19,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Include="$(MSBuildThisFileDirectory)..\..\build\net461\ClrStack32.exe" Pack="True" PackagePath=".\lib\net461" Visible="False" />
+        <None Include="$(MSBuildThisFileDirectory)..\..\build\net472\ClrStack32.exe" Pack="True" PackagePath=".\lib\net472" Visible="False" />
     </ItemGroup>
 
 </Project>
