@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
@@ -17,10 +16,6 @@ namespace ClrStack
 
         [DllImport("kernel32.dll", SetLastError = true)]
         private static extern bool IsWow64Process(IntPtr hProcess, out bool isWow64Process);
-
-        [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
-        private static extern IntPtr LoadLibraryEx(string lpFileName, IntPtr hReservedNull, int dwFlags);
-        private const int LoadLibrarySearchDllLoadDir = 0x00000100;
 
         private static int RerunMainAs32BitProcess(string[] args)
         {
@@ -48,14 +43,6 @@ namespace ClrStack
             process.CancelOutputRead();
             process.CancelErrorRead();
             return process.ExitCode;
-        }
-
-        private static void EnsureDbgEngineIsLoaded()
-        {
-            var systemFolder = Environment.GetFolderPath(Environment.SpecialFolder.System);
-            var res = LoadLibraryEx(Path.Combine(systemFolder, "dbgeng.dll"), IntPtr.Zero, LoadLibrarySearchDllLoadDir);
-            if (res == IntPtr.Zero)
-                throw new Win32Exception(Marshal.GetLastWin32Error());
         }
 
         public static void Main(string[] args)
@@ -87,8 +74,6 @@ namespace ClrStack
             var output = new StringBuilder();
             try
             {
-                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                    EnsureDbgEngineIsLoaded();
                 using (var target = DataTarget.AttachToProcess(pid, true))
                 {
                     var clrVersion = target.ClrVersions.FirstOrDefault();
