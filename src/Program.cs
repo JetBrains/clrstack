@@ -1,22 +1,20 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using Microsoft.Diagnostics.Runtime;
-using System;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Text;
+using Microsoft.Diagnostics.Runtime;
 
 namespace ClrStack
 {
     internal static class Program
     {
+        private const string ThreadDumpDirEnvVar = "THREAD_DUMP_DIR";
+
         [DllImport("kernel32.dll", SetLastError = true)]
         private static extern bool IsWow64Process(IntPtr hProcess, out bool isWow64Process);
 
@@ -24,11 +22,9 @@ namespace ClrStack
         private static extern IntPtr LoadLibraryEx(string lpFileName, IntPtr hReservedNull, int dwFlags);
         private const int LoadLibrarySearchDllLoadDir = 0x00000100;
 
-        private const string ThreadDumpDirEnvVar = "THREAD_DUMP_DIR";
-
         private static int RerunMainAs32BitProcess(string[] args)
         {
-            var platformSpecificExecutable = $"ClrStack32.exe";
+            var platformSpecificExecutable = "ClrStack32.exe";
             var assemblyDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             var fullPath = assemblyDirectory != null
                 ? Path.Combine(assemblyDirectory, platformSpecificExecutable)
