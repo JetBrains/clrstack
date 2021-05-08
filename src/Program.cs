@@ -89,7 +89,7 @@ namespace ClrStack
             {
                 if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                     EnsureDbgEngineIsLoaded();
-                using (var target = DataTarget.AttachToProcess(pid, false))
+                using (var target = DataTarget.AttachToProcess(pid, true))
                 {
                     var clrVersion = target.ClrVersions.FirstOrDefault();
                     if (clrVersion == null)
