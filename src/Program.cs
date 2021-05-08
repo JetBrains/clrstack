@@ -98,16 +98,17 @@ namespace ClrStack
                         return;
                     }
 
-                    var runtime = clrVersion.CreateRuntime();
-
-                    foreach (var clrThread in runtime.Threads)
+                    using (var runtime = clrVersion.CreateRuntime())
                     {
-                        if (!clrThread.IsAlive)
-                            continue;
-                        output.AppendLine($"Thread #{clrThread.ManagedThreadId}:");
+                        foreach (var clrThread in runtime.Threads)
+                        {
+                            if (!clrThread.IsAlive)
+                                continue;
+                            output.AppendLine($"Thread #{clrThread.ManagedThreadId}:");
 
-                        foreach (var frame in clrThread.EnumerateStackTrace())
-                            output.AppendLine($"\tat {frame}");
+                            foreach (var frame in clrThread.EnumerateStackTrace())
+                                output.AppendLine($"\tat {frame}");
+                        }
                     }
                 }
             }
