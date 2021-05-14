@@ -13,7 +13,7 @@
     </PropertyGroup>
 
     <ItemGroup Condition="'$(JetBuild)' == 'true'">
-        <PackageReference Include="JetBrains.Microsoft.Diagnostics.Runtime" Version="2.0.20210508.11" />
+        <PackageReference Include="JetBrains.Microsoft.Diagnostics.Runtime" Version="2.0.20210514.12" />
     </ItemGroup>
 
     <ItemGroup Condition="'$(JetBuild)' != 'true'">
