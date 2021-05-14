@@ -17,7 +17,7 @@
     </ItemGroup>
 
     <ItemGroup Condition="'$(JetBuild)' != 'true'">
-        <PackageReference Include="Microsoft.Diagnostics.Runtime" Version="2.0.145301" />
+        <PackageReference Include="Microsoft.Diagnostics.Runtime" Version="2.0.226401" />
     </ItemGroup>
 
     <ItemGroup>
