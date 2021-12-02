@@ -8,6 +8,8 @@
         <Authors>Mikhail Filippov, Ilia Kirianovskii</Authors>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageProjectUrl>https://github.com/JetBrains/clrstack</PackageProjectUrl>
+        <PackageIconUrl>https://resources.jetbrains.com/storage/products/resharper/img/icons/ClrStack_128.png</PackageIconUrl>
+        <PackageIcon>icon.png</PackageIcon>
         <Description>Tool for capturing managed stack traces from .NET applications.</Description>
         <Copyright>JetBrains s.r.o.</Copyright>
     </PropertyGroup>
@@ -20,6 +22,7 @@
 
     <ItemGroup>
         <None Include="$(OutputPath)\**\ClrStack32.exe" Pack="True" PackagePath="lib" Visible="False" />
+        <None Include="$(MSBuildThisFileDirectory)icon.png" Pack="True" PackagePath="." />
     </ItemGroup>
 
 </Project>
