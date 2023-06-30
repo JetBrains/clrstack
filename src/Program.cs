@@ -35,7 +35,7 @@ namespace ClrStack
                 }
             };
             process.OutputDataReceived += (sender, eventArgs) => Console.WriteLine(eventArgs.Data);
-            process.ErrorDataReceived += (sender, eventArgs) => Console.WriteLine(eventArgs.Data);
+            process.ErrorDataReceived += (sender, eventArgs) => Console.Error.WriteLine(eventArgs.Data);
             process.Start();
             process.BeginOutputReadLine();
             process.BeginErrorReadLine();
@@ -45,30 +45,27 @@ namespace ClrStack
             return process.ExitCode;
         }
 
-        public static void Main(string[] args)
+        public static int Main(string[] args)
         {
             if (args.Length != 1 ||
                 !int.TryParse(args[0], NumberStyles.Integer, CultureInfo.InvariantCulture, out var pid))
             {
                 Console.Error.WriteLine("Usage: ClrStack.exe [PID]");
-                return;
+                return 1;
             }
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) && Environment.Is64BitOperatingSystem && Environment.Is64BitProcess)
             {
                 var targetProcess = Process.GetProcessById(pid);
                 if (IsWow64Process(targetProcess.Handle, out var targetProcessIsWow64) && targetProcessIsWow64)
-                {
-                    RerunMainAs32BitProcess(args);
-                    return;
-                }
+                    return RerunMainAs32BitProcess(args);
             }
 
             var threadDumpDir = Environment.GetEnvironmentVariable(ThreadDumpDirEnvVar);
             if (!string.IsNullOrEmpty(threadDumpDir) && !Directory.Exists(threadDumpDir))
             {
                 Console.Error.WriteLine($"Path [{threadDumpDir}] in THREAD_DUMP_DIR environment variable not exists or not directory");
-                return;
+                return 1;
             }
 
             var output = new StringBuilder();
@@ -76,12 +73,7 @@ namespace ClrStack
             {
                 using (var target = DataTarget.AttachToProcess(pid, true))
                 {
-                    var clrVersion = target.ClrVersions.FirstOrDefault();
-                    if (clrVersion == null)
-                    {
-                        output.AppendLine($"CLR not found in process: {pid}");
-                        return;
-                    }
+                    var clrVersion = target.ClrVersions.FirstOrDefault() ?? throw new Exception("CLR not found in process");
 
                     using (var runtime = clrVersion.CreateRuntime())
                     {
@@ -111,6 +103,8 @@ namespace ClrStack
                 var fileName = $"{DateTime.Now:yyyy-MM-dd_HH-mm-ss.fff}.tdump";
                 File.WriteAllText(Path.Combine(threadDumpDir, fileName), output.ToString(), Encoding.UTF8);
             }
+
+            return 0;
         }
     }
 }
