@@ -3,7 +3,7 @@
     <PropertyGroup>
         <IsPackable>true</IsPackable>
         <PackageId>ClrStack</PackageId>
-        <Version>2.0.8</Version>
+        <Version>2.0.9</Version>
         <Title>ClrStack</Title>
         <Authors>Mikhail Filippov, Ilia Kirianovskii</Authors>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
