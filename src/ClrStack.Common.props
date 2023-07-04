@@ -11,10 +11,12 @@
         <IsPackable>false</IsPackable>
         <UseAppHost>false</UseAppHost>
         <RollForward>Major</RollForward>
+        <AutoGenerateBindingRedirects Condition="'$(JetBuild)' == 'true'">false</AutoGenerateBindingRedirects>
     </PropertyGroup>
 
     <ItemGroup Condition="'$(JetBuild)' == 'true'">
         <PackageReference Include="JetBrains.Microsoft.Diagnostics.Runtime" Version="2.1.20230630.2" />
+        <None Include="$(MSBuildThisFileDirectory)App.config" />
     </ItemGroup>
 
     <ItemGroup Condition="'$(JetBuild)' != 'true'">
