@@ -107,6 +107,7 @@ namespace ClrStack
                 }, timeoutCanceler.Token);
             }
 
+            var isExceptionThrown = false;
             var output = new StringBuilder();
             try
             {
@@ -132,6 +133,7 @@ namespace ClrStack
             }
             catch (Exception ex)
             {
+                isExceptionThrown = true;
                 output.AppendLine($"Cannot capture stack trace from process[{pid}]. Error: {ex.Message}");
             }
 
@@ -145,7 +147,7 @@ namespace ClrStack
                 File.WriteAllText(Path.Combine(threadDumpDir, fileName), output.ToString(), Encoding.UTF8);
             }
 
-            return 0;
+            return isExceptionThrown ? 3 : 0;
         }
     }
 }
