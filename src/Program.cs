@@ -49,7 +49,7 @@ namespace ClrStack
 
         private static int PrintUsageError()
         {
-            Console.Error.WriteLine("Usage: ClrStack.exe PID [--timeout ms]");
+            Console.Error.WriteLine("Usage: ClrStack.exe PID [--no-suspend] [--timeout ms]");
             return 1;
         }
 
@@ -61,10 +61,15 @@ namespace ClrStack
                 return PrintUsageError();
             }
 
+            bool suspend = true;
             int? timeoutMs = null;
             foreach (var arg in args.Skip(1))
             {
-                if (arg.StartsWith("--timeout=", StringComparison.InvariantCultureIgnoreCase) && timeoutMs == null)
+                if (arg.Equals("--no-suspend", StringComparison.InvariantCultureIgnoreCase) && suspend)
+                {
+                    suspend = false;
+                }
+                else if (arg.StartsWith("--timeout=", StringComparison.InvariantCultureIgnoreCase) && timeoutMs == null)
                 {
                     if (!int.TryParse(arg.Split(new[] {'='}, 2)[1], NumberStyles.None, CultureInfo.InvariantCulture, out var value))
                     {
@@ -111,7 +116,7 @@ namespace ClrStack
             var output = new StringBuilder();
             try
             {
-                using (target = DataTarget.AttachToProcess(pid, true))
+                using (target = DataTarget.AttachToProcess(pid, suspend))
                 {
                     var clrVersion = target.ClrVersions.FirstOrDefault() ?? throw new Exception("CLR not found in process");
 
