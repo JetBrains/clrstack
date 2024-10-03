@@ -15,7 +15,7 @@
     </PropertyGroup>
 
     <ItemGroup Condition="'$(JetBuild)' == 'true'">
-        <PackageReference Include="JetBrains.Microsoft.Diagnostics.Runtime" Version="2.1.20230630.2" />
+        <PackageReference Include="JetBrains.Microsoft.Diagnostics.Runtime" Version="2.1.20241003.5" />
         <None Include="$(MSBuildThisFileDirectory)App.config" />
     </ItemGroup>
 
