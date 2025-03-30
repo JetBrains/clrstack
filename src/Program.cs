@@ -34,7 +34,7 @@ namespace ClrStack
                 : platformSpecificExecutable;
             var process = new Process
             {
-                StartInfo = new ProcessStartInfo(fullPath, args[0])
+                StartInfo = new ProcessStartInfo(fullPath, string.Join(" ", args))
                 {
                     CreateNoWindow = true,
                     RedirectStandardOutput = true,
@@ -55,7 +55,7 @@ namespace ClrStack
 
         private static int PrintUsageError()
         {
-            Console.Error.WriteLine($"Usage: ClrStack.exe PID  [{NoSuspend}] {{ [{Timeout}=5000 ms] [{CreateSnapshotAndAttach} (windows only)] }} | {{ {DumpProcessTo}=\"full path\" }}");
+            Console.Error.WriteLine($"Usage: ClrStack.exe PID  [{NoSuspend}] {{ [{Timeout}=5000 (in milliseconds)] [{CreateSnapshotAndAttach} (windows only)] }} | {{ {DumpProcessTo}=\"full path\" }}");
             return 1;
         }
 
@@ -67,14 +67,14 @@ namespace ClrStack
                 return PrintUsageError();
             }
 
-            args = args.Skip(1).ToArray(); // skip pid
-
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) && Environment.Is64BitOperatingSystem && Environment.Is64BitProcess)
             {
                 var targetProcess = Process.GetProcessById(pid);
                 if (IsWow64Process(targetProcess.Handle, out var targetProcessIsWow64) && targetProcessIsWow64)
                     return RerunMainAs32BitProcess(args);
             }
+            
+            args = args.Skip(1).ToArray(); // skip pid
 
             var threadDumpDir = Environment.GetEnvironmentVariable(ThreadDumpDirEnvVar);
             if (!string.IsNullOrEmpty(threadDumpDir) && !Directory.Exists(threadDumpDir))
